@@ -1,0 +1,21 @@
+trigger: none  # Manual run only
+
+parameters:
+  - name: version
+    displayName: 'Select the version bump type'
+    type: string
+    default: patch
+    values:
+      - major
+      - minor
+      - patch
+
+jobs:
+- job: VersionSelection
+  displayName: 'Display Selected Version'
+  pool:
+    name: QT6_GSS
+  steps:
+    - script: |
+        echo "Selected version bump: ${{ parameters.version }}"
+      displayName: 'Print selected version'
